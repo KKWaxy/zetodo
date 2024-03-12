@@ -17,8 +17,8 @@
                     {% if tasks %}
                     <ul class="list-group">
                         {% for task in tasks %}
-                            <li class="list-group-item">
-                                <span>{{task.title}}</span><a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
+                            <li class="list-group-item d-flex">
+                                <span class="mr-auto">{{task.title}}</span><a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
                             </li>
                         {% endfor %}
                     </ul>
