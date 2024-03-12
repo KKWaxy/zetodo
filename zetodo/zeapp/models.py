@@ -18,7 +18,7 @@ STATUS =  [
     (5, "En pause"),
     (6, "En attente de validation")
 ]
-class TodoModel(models.Model):
+class TaskModel(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(_("Title"),max_length=100)
@@ -33,5 +33,5 @@ class TodoModel(models.Model):
     
     class Meta:
         ordering = ["-priority"]
-        verbose_name = _("Todo")
-        verbose_name_plural = _("Todos") 
+        verbose_name = _("Task")
+        verbose_name_plural = _("Tasks") 
