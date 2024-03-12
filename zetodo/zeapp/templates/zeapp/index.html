@@ -1,10 +1,17 @@
 {% extends "zeapp/base.html" %}
 {% block content %}
     <section class="container">
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center mt-4">
             <div class="col-md-6">
                 <div class="card" style="background-color:rgba(24, 25, 32, 1)">
                   <div class="card-body">
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="badge badge-danger"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="input-group mb-3">
@@ -18,7 +25,7 @@
                     <ul class="list-group">
                         {% for task in tasks %}
                             <li class="list-group-item d-flex">
-                                <span class="mr-auto">{{task.title}}</span><a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
+                                <span class="mr-auto">{{task.title}}</span>  <a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
                             </li>
                         {% endfor %}
                     </ul>
