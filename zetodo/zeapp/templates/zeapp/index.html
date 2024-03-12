@@ -8,12 +8,19 @@
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" aria-label="" aria-describedby="For typing new Task to Add" placeholder="New task ...">
+                            <input name='title' id="title" type="text" class="form-control" aria-label="" aria-describedby="For typing new Task to Add" placeholder="New task ..." required>
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="submit">+</button>
+                                <button class="btn btn-info" type="submit">+</button>
                             </div>
                           </div>
                     </form>
+                    {% if tasks %}
+                    <ul class="list-group">
+                        {% for task in tasks %}
+                            <li class="list-group-item">{{task.title}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}{% endif %}
                     <h4 class="card-title">
 
                     </h4>

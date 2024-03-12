@@ -22,10 +22,10 @@ class TaskModel(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(_("Title"),max_length=100)
-    memo = models.TextField(_("Description"))
-    priority = models.IntegerField(_("Priority"), choices=PRIORITY)
-    duedate = models.DateField(_("Due date"))
-    status = models.IntegerField(_("Status"), choices=STATUS)
+    memo = models.TextField(_("Description"),null=True,blank=True)
+    priority = models.IntegerField(_("Priority"), choices=PRIORITY,null=True,blank=True)
+    duedate = models.DateField(_("Due date"),null=True,blank=True)
+    status = models.IntegerField(_("Status"), choices=STATUS,null=True,blank=True)
     created_date = models.DateTimeField(_("Created date"), editable=False, auto_now_add=True)
 
     def __str__(self):

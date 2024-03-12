@@ -1,6 +1,8 @@
-from django.forms import forms
+from django.forms import ModelForm, forms
+from .models import TaskModel
 
-
-class AddTask(forms.Form):
+class TaskModelForm(ModelForm):
     
-    pass
+    class Meta:
+        model = TaskModel
+        fields = ["title","memo","priority","duedate","status"]
