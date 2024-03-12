@@ -8,5 +8,5 @@ def index(request: HttpRequest) -> HttpResponse:
     ctx : Dict = {
         'page_title': title,
     }
-    return(render(request=request,context=ctx,template_name='zeapp/tables.html'))
+    return(render(request=request,context=ctx,template_name='zeapp/index.html'))
 
