@@ -1,6 +1,10 @@
+from .views import index, delete_task
+
 from django.urls import path
-from zeapp.views import index
+
+
 
 urlpatterns = [
-    path('',view=index,name='index')
+    path('',view=index,name='index'),
+    path('delete/<uuid:task_id>', view=delete_task, name='delete_task'),
 ]

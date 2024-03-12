@@ -1,7 +1,9 @@
 from typing import Dict
+from uuid import UUID
 
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import get_object_or_404, redirect
 
 from .forms import TaskModelForm
 from .models import TaskModel
@@ -29,3 +31,9 @@ def index(request: HttpRequest) -> HttpResponse:
         ctx['tasks'] = tasks
         return(render(request=request,context=ctx,template_name='zeapp/index.html'))
 
+def delete_task(request: HttpRequest, task_id: UUID) -> HttpResponse:
+
+    task = get_object_or_404(TaskModel, pk=task_id)
+    task.delete()
+
+    return(redirect('index', permanent=True))

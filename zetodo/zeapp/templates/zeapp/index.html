@@ -17,7 +17,9 @@
                     {% if tasks %}
                     <ul class="list-group">
                         {% for task in tasks %}
-                            <li class="list-group-item">{{task.title}}</li>
+                            <li class="list-group-item">
+                                <span>{{task.title}}</span><a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
+                            </li>
                         {% endfor %}
                     </ul>
                     {% else %}{% endif %}
@@ -29,4 +31,8 @@
             </div>
         </div>
     </section>
+    <script>
+        title = document.getElementById('title')
+        title.focus()
+    </script>
 {% endblock content %}
