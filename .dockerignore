@@ -1,0 +1,6 @@
+.gitgnore
+
+env/
+.vscode/
+prototype/
+arichitecture/
