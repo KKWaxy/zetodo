@@ -39,13 +39,13 @@ def update_task(request: HttpRequest, task_id: UUID) -> HttpResponse:
 
 def task_detail(request: HttpRequest, task_id: UUID) -> HttpResponse:
     
-    if(request.method == 'UPDATE'):
-        task = get_object_or_404(TaskModel, pk=task_id)
-        form = TaskModelForm(instance=task)
+    task = get_object_or_404(TaskModel, pk=task_id)
+    form = TaskModelForm(instance=task)
 
     ctx : Dict = {
-      'task' : task,
-      'form' : form
+        'page_title' : 'Task detail-'+str(task.id),
+        'task' : task,
+        'form' : form,
     }
 
     return(render(request=request, context=ctx, template_name='zeapp/task_detail.html'))

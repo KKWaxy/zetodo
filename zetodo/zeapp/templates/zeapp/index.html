@@ -1,9 +1,12 @@
 {% extends "zeapp/base.html" %}
 {% block content %}
     <section class="container">
-        <div class="row justify-content-md-center mt-4">
-            <div class="col-md-6">
+
+        <div class="row justify-content-md-center my-4">
+            <div class="col-md-7">
                 <div class="card" style="background-color:rgba(24, 25, 32, 1)">
+                    {% load static %}
+                    <img class="card-img-top" src="{% static 'zeapp/image/png/1x/logo.png' %}" alt="" srcset="" >
                   <div class="card-body">
                     {% if messages %}
                         <ul class="messages">
@@ -17,18 +20,25 @@
                         <div class="input-group mb-3">
                             <input name='title' id="title" type="text" class="form-control" aria-label="" aria-describedby="For typing new Task to Add" placeholder="New task ..." required>
                             <div class="input-group-append">
-                                <button class="btn btn-info" type="submit">+</button>
+                                <button class="btn btn-success" type="submit"><i class="fa-solid fa-circle-plus"></i></button>
                             </div>
                           </div>
                     </form>
                     {% if tasks %}
-                    <ul class="list-group">
-                        {% for task in tasks %}
-                            <li class="list-group-item d-flex">
-                                <span class="mr-auto">{{task.title}}</span>  <a class="btn btn-danger" href="{% url 'delete_task' task.id %}" role="button">-</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                        <div id="taskList">
+                            <ul class="list-group" >
+                                {% for task in tasks %}
+                                    <li class="list-group-item d-flex">
+                                        <span class="mr-auto d-inline-block text-truncate font-weight-light  pr-2">{{task.title | capfirst}}</span>  
+                                        <span class="d-inline-block d-flex badge p-0 border-left" style="background-color: rgb(14, 14, 14);">
+                                            <a class="btn " href="{% url 'task_detail' task.id %}" role="button"><i class="fa-solid fa-pen-to-square " style="color: #077272;"></i></a>
+                                            
+                                            <a class="btn " href="{% url 'delete_task' task.id %}" role="button"><i class="fa-solid fa-trash-can" style="color: #b50303;"></i></a>
+                                        </span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% else %}{% endif %}
                     <h4 class="card-title">
 
@@ -38,8 +48,6 @@
             </div>
         </div>
     </section>
-    <script>
-        title = document.getElementById('title')
-        title.focus()
-    </script>
+    {% load static %}
+    <script src="{% static 'zeapp/js/main.js' %}"></script>
 {% endblock content %}
