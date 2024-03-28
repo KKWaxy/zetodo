@@ -27,7 +27,7 @@ jobs:
             - name: Build docker image
               run: docker build -t ${{vars.CI_REGISTRY}}:${{github.sha}} -f ./gitops/docker/Dockerfile .
             - name: Save builted image
-              run: docker image save -o ${{vars.CI_REGISTRY}}:${{github.sha}}.tar ${{vars.CI_REGISTRY}}:${{github.sha}}
+              run: docker image save -o ${{github.repository}}:${{github.sha}}.tar ${{vars.CI_REGISTRY}}:${{github.sha}}
     
     docker-test-build:
         runs-on: ubuntu-letest
