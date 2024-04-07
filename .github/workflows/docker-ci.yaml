@@ -27,7 +27,7 @@ jobs:
             - name: Build docker image
               run: docker build -t ${{vars.CI_REGISTRY}}:${{github.sha}} -f ./gitops/Dockerfile .
             - name: Docker login
-              run: docker login -u ${{vars.CI_REGISTRY_USER}} -p ${{vars.CI_REGISTRY_PASSWORD}}
+              run: docker login -u ${{secrets.CI_REGISTRY_USER}} -p ${{secrets.CI_REGISTRY_PASSWORD}}
             - name: Docker push image
               run: docker push ${{vars.CI_REGISTRY}}:${{github.sha}}
 
