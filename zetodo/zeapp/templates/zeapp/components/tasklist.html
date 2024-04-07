@@ -1,0 +1,16 @@
+<div id="taskList">
+    <ul class="list-group" >
+        {% for task in tasks %}
+            <li class="list-group-item d-flex">
+                <div class="mr-auto">
+                    <span class="text-truncate font-weight-light pr-2">{{task.title | capfirst}}</span>  
+                    <!-- <small class="text-muted font-italic">{{task.priority}} <strong>{{task.status}}</strong> {{task.duedate}}</small> -->
+                </div>
+                <span class="d-inline-block d-flex badge p-0 border-left" style="background-color: rgb(14, 14, 14);">
+                    <a class="btn " href="{% url 'task_detail' task.id %}" role="button"><i class="fa-solid fa-pen-to-square " style="color: #077272;"></i></a>  
+                    <a class="btn " href="{% url 'delete_task' task.id %}" role="button"><i class="fa-solid fa-trash-can" style="color: #b50303;"></i></a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

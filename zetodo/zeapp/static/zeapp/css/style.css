@@ -3,12 +3,13 @@
 
 :root{
     --primary: #000000;
-    --secondary: #077272;
+    --secondary: #ffffff;
 }
 
 .color-secodary{
     color: var(--secondary);
 }
+/* 077272 */
 .colord-primary{
     color: var(--primary);
 }
@@ -16,4 +17,8 @@
 .scroll{
     overflow-y: scroll; 
     height: 450px;
+}
+
+.text-detail-secondary{
+    color: var(--secondary);
 }

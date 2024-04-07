@@ -40,6 +40,21 @@ def update_task(request: HttpRequest, task_id: UUID) -> HttpResponse:
 def task_detail(request: HttpRequest, task_id: UUID) -> HttpResponse:
     
     task = get_object_or_404(TaskModel, pk=task_id)
+    
+    if request.method == "POST":
+        if request.POST['title']:
+            task.title = request.POST['title']
+        if request.POST['memo']:
+            task.memo = request.POST['memo']
+        if request.POST['priority']:
+            task.priority = request.POST['priority']
+        if request.POST['status']:
+            task.status = request.POST['status']
+        if request.POST['duedate']:
+            task.duedate = request.POST['duedate']
+        task.save()
+        return(redirect('index', permanent=True))
+        
     form = TaskModelForm(instance=task)
 
     ctx : Dict = {
@@ -48,4 +63,4 @@ def task_detail(request: HttpRequest, task_id: UUID) -> HttpResponse:
         'form' : form,
     }
 
-    return(render(request=request, context=ctx, template_name='zeapp/task_detail.html'))
+    return(render(request=request, context=ctx, template_name='zeapp/index.html'))

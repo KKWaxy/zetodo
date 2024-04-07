@@ -1,0 +1,39 @@
+<form class="task_detail" action="" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label class=" font-weight-light text-secondary" for="task_title">Votre tâche en une phrase.</label>
+        {{form.title}}
+    </div>
+    <div class="form-group">
+        <label class="text-secondary font-weight-light" for="task_memo">Et si on décrivait votre tâche en 500 Caractère.</label>
+        {{form.memo}}
+        <!-- <textarea class="form-control" id="task_memo"  minlength="0" maxlength="500" placeholder="C'est toujours mieux de décrire en quoi consiste la tâche à faire....">     -->
+        </textarea>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="id_priority" class="text-secondary font-weight-light" >Priorité</label>
+            {{form.priority}}
+        </div> 
+        <div class="form-group col">
+            <label for="id_status" class="text-secondary font-weight-light">Status</label>
+            {{form.status}}
+        </div>
+        <div class="form-group col">
+            <label for="id_duedate" class="text-secondary font-weight-light">Date de fin</label>
+            {{form.duedate}}
+            <!-- Create an input element with the datepicker class -->
+            <!-- <input type="text" class="form-control datepicker" placeholder="Select a date"> -->
+
+
+</script>
+        </div>
+
+    </div>
+    <div class="inline-form">
+        <button class="btn btn-success mr-auto" type="submit">Valider <i class="fa-regular fa-circle-check"></i></button>
+        <a class="btn btn-outline-warning" href="{% url 'index' %}" role="button">Annuler <i class="fa-solid fa-ban" style="color: #FFD43B;"></i></a>
+        <a class="btn btn-outline-danger" href="{% url 'delete_task' task.id %}" role="button">Supprimer <i class="fa-solid fa-trash-can" ></i></a>
+    </div>
+    
+</form>
