@@ -1,1 +1,16 @@
-version: 'version'
+version: '3.8'
+
+services:
+  zeapp:
+    image: ${CI_REGISTRY:-kkwaxy/zeapp}:${IMAGE_TAG}
+    ports:
+      - "8000:8000"
+    volumes:
+      - sqlite:/
+    networks:
+      - internal
+      
+networks:
+  - internal :
+volumes:
+  sqlite:

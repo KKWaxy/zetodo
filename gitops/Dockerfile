@@ -27,7 +27,7 @@ RUN adduser --no-create-home --disabled-password  -s /usr/sbin/nologin ${USER}
 HEALTHCHECK --interval=5s --timeout=15s --start-period=5s --retries=3 \
  CMD curl -f http://localhost:8000/ || exit 1
 
-# RUN python manage.py collectstatic
+RUN python manage.py collectstatic
 
 USER ${USER}
 
