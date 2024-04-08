@@ -1,12 +1,12 @@
 name: Lint, Build, Scan, Push, Test docker image
 run-name: Docker CI/CD
 on: 
-    push:
-        branches:
-            - master
-            - dev-*
-    pull_request: 
-            
+  push:
+    branches:
+      - master
+      - dev-*
+  pull_request: 
+    branches: [ "master" ]    
 jobs:
     
     docker-lint:
