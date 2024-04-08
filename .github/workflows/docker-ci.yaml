@@ -37,13 +37,13 @@ jobs:
                 name: ${{github.sha}}
                 path: builds/${{github.sha}}.tar
 
-    # docker-scan:
-    #   runs-on: ubuntu-latest
-    #   container: 
-    #     image: cgr.dev/chainguard/grype:latest
-    #   needs: "docker-build"
-    #   steps:
-    #     - uses: actions/checkout@v3
+    docker-scan:
+      runs-on: ubuntu-latest
+      container: 
+        image: cgr.dev/chainguard/grype:latest
+      needs: "docker-build"
+      steps:
+        - uses: actions/checkout@v3
     
     docker-push:
       runs-on: ubuntu-latest
@@ -54,7 +54,9 @@ jobs:
           with:
             name: ${{github.sha}}
         - name: Load docker image
-          run: docker load -i ${{github.sha}}.tar
+          run: docker load -i ${{github.sha}}.
+        - name: list images
+          run: docker images
         - name: Docker login
           run: docker login -u ${{secrets.CI_REGISTRY_USER}} -p ${{secrets.CI_REGISTRY_PASSWORD}}
         - name: Docker push image
