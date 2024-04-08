@@ -53,10 +53,10 @@ jobs:
         - uses: actions/download-artifact@v4
           with:
             name: ${{github.sha}}
-        - name: Display structure of downloaded files
-          run: ls -R
+        - name: Load docker image
+          run: docker load -i ${{github.sha}}
         - name: Docker login
           run: docker login -u ${{secrets.CI_REGISTRY_USER}} -p ${{secrets.CI_REGISTRY_PASSWORD}}
-        # - name: Docker push image
-        #   run: docker push ${{vars.CI_REGISTRY}}:${{github.sha}}
+        - name: Docker push image
+          run: docker push ${{vars.CI_REGISTRY}}:${{github.sha}}
             
