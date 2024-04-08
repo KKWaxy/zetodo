@@ -1,4 +1,4 @@
-name: Lint, Build, Scan and Test docker image
+name: Lint, Build, Scan Push, Test docker image
 run-name: ${{github.actor}}-${{github.event_name}}
 on: 
     push:
