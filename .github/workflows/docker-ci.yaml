@@ -1,12 +1,21 @@
-# name: Docker : Lint, Build, Scan Push, Test docker image
-# run-name: Docker CI/CD
+name: Lint, Build, Scan, Push, Test docker image
+run-name: Docker CI/CD
 on:
-    workflow_run:
-        workflows: [Python CI/CD]
-        branches:
-            - master  
-        types:
-            - completed
+  workflow_run:
+    workflows:
+      - Python CI/CD
+    branches:
+      - master
+      - dev-*
+    types:
+      - completed
+# on: 
+#     push:
+#         branches:
+#             - master
+#             - dev-*
+#     pull_request: 
+            
 jobs:
     
     docker-lint:
