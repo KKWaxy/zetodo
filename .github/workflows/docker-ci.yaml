@@ -54,7 +54,7 @@ jobs:
           with:
             name: ${{github.sha}}
         - name: Load docker image
-          run: docker load -i ${{github.sha}}
+          run: docker load -i ${{github.sha}}.tar
         - name: Docker login
           run: docker login -u ${{secrets.CI_REGISTRY_USER}} -p ${{secrets.CI_REGISTRY_PASSWORD}}
         - name: Docker push image
