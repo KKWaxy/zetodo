@@ -1,5 +1,5 @@
 name: Lint, Scaning, Unitest, Integration test,
-run-name : ${{github.actor}}-${{github.event_name}}
+run-name : Python CI/CD
 on:
   push:
     branches: ["*"]
