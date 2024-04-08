@@ -19,11 +19,12 @@ RUN set -o pipefail\
     && PYTHONUNBUFFERED=1\
     && python -m pip install --no-cache-dir -r  ./"${PROJECT_NAME}"/requirements.txt\
     && rm -rf /var/lib/apt/lists/*\
-    && adduser --no-create-home --disabled-password  -s /usr/sbin/nologin "${USER}" \
-    && RUN python manage.py collectstatic
+    && adduser --no-create-home --disabled-password  -s /usr/sbin/nologin "${USER}"
 
 HEALTHCHECK --interval=5s --timeout=15s --start-period=5s --retries=3 \
  CMD curl -f http://localhost:8000/ || exit 1
+
+RUN python manage.py collectstatic
 
 USER ${USER}
 
