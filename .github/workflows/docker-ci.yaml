@@ -38,7 +38,7 @@ jobs:
     docker-scan:
       runs-on: ubuntu-latest
       container: 
-        image: cgr.dev/chainguard/grype:0.74.6
+        image: cgr.dev/chainguard/grype
       needs: "docker-build"
       steps:
         - uses: actions/checkout@v3
