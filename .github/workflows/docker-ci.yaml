@@ -3,11 +3,10 @@ run-name: Docker CI/CD
 on:
     workflow_run:
         workflows: 
-            - Python CI/CD
+            - "Python CI/CD"
         branches:
             - master
-            - dev-* 
-            
+            - dev-*      
 jobs:
     
     docker-lint:
