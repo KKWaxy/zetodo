@@ -35,13 +35,13 @@ jobs:
                 name: image
                 path: builds/${{github.sha}}.tar
 
-    docker-scan:
-      runs-on: ubuntu-latest
-      container: 
-        image: cgr.dev/chainguard/grype
-      needs: "docker-build"
-      steps:
-        - uses: actions/checkout@v3
+    # docker-scan:
+    #   runs-on: ubuntu-latest
+    #   container: 
+    #     image: cgr.dev/chainguard/grype:latest
+    #   needs: "docker-build"
+    #   steps:
+    #     # - uses: actions/checkout@v3
     
     docker-push:
       runs-on: ubuntu-latest
