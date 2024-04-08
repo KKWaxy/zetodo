@@ -30,8 +30,10 @@ jobs:
               run: mkdir builds
             - name: Save builted image
               run: docker image save -o builds/${{github.sha}}.tar ${{vars.CI_REGISTRY}}:${{github.sha}}
-
-
+            - uses: actions/upload-artifact@v4
+              with:
+                name: image
+                path: builds/${{github.sha}}.tar
 
     docker-scan:
       runs-on: ubuntu-latest
