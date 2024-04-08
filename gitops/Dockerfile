@@ -16,7 +16,7 @@ COPY ./zetodo .
 
 RUN set -o pipefail\
     && PYTHONDONTWRITEBYTECODE=1\ 
-    # && PYTHONUNBUFFERED=1\
+    && PYTHONUNBUFFERED=1\
     && python -m pip install --no-cache-dir -r  ./"${PROJECT_NAME}"/requirements.txt\
     && rm -rf /var/lib/apt/lists/*\
     && adduser --no-create-home --disabled-password  -s /usr/sbin/nologin "${USER}" \
