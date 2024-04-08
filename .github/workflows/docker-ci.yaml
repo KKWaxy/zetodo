@@ -43,6 +43,11 @@ jobs:
         image: cgr.dev/chainguard/grype:latest
       needs: "docker-build"
       steps:
+        - uses: actions/download-artifact@v4
+          with:
+            name: ${{github.sha}}
+        - name: Load docker image
+          run: docker load -i ${{github.sha}}.tar
         - uses: actions/checkout@v3
     
     docker-push:
@@ -54,7 +59,7 @@ jobs:
           with:
             name: ${{github.sha}}
         - name: Load docker image
-          run: docker load -i ${{github.sha}}.
+          run: docker load -i ${{github.sha}}.tar
         - name: list images
           run: docker images
         - name: Docker login
