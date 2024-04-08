@@ -1,7 +1,7 @@
 ARG PYTHON_TAG_VERSION=3.12.2-alpine3.19
 ARG PROJECT_NAME=zetodo
 
-FROM python:${PYTHON_TAG_VERSION} AS builder
+FROM python:${PYTHON_TAG_VERSION}
 
 LABEL author="Wilfried KOUASSI" email="zeflexcorp@gmail.com" organization="zeflexcorp"
 
@@ -18,16 +18,12 @@ RUN set -o pipefail\
     && PYTHONDONTWRITEBYTECODE=1\ 
     && PYTHONUNBUFFERED=1\
     && python -m pip install --no-cache-dir -r  ./"${PROJECT_NAME}"/requirements.txt\
-    && rm -rf /var/lib/apt/lists/*
-
-FROM builder AS deploy
-
-RUN adduser --no-create-home --disabled-password  -s /usr/sbin/nologin "${USER}"
+    && rm -rf /var/lib/apt/lists/*\
+    && adduser --no-create-home --disabled-password  -s /usr/sbin/nologin "${USER}" \
+    && RUN python manage.py collectstatic
 
 HEALTHCHECK --interval=5s --timeout=15s --start-period=5s --retries=3 \
  CMD curl -f http://localhost:8000/ || exit 1
-
-RUN python manage.py collectstatic
 
 USER ${USER}
 
