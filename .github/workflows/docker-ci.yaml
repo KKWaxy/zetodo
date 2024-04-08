@@ -29,9 +29,9 @@ jobs:
             - name: Create builds directory
               run: mkdir builds
             - name: Save builted image
-              run: docker image save -o /builds/${{github.sha}}.tar ${{vars.CI_REGISTRY}}:${{github.sha}}
+              run: docker image save -o builds/${{github.sha}}.tar ${{vars.CI_REGISTRY}}:${{github.sha}}
 
-          
+
 
     docker-scan:
       runs-on: ubuntu-latest
