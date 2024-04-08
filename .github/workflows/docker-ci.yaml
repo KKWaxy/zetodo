@@ -17,7 +17,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Lint dockerfile
-              run: hadolint ./gitops/docker/Dockerfile  
+              run: hadolint ./gitops/Dockerfile  
 
     docker-build:
         runs-on: ubuntu-latest
