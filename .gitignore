@@ -142,3 +142,5 @@ zetodo-ec2.ppk
 
 #terraform
 terraform.tfstate
+terraform/dockers/terraform.tfstate
+terraform/dockers/terraform.tfstate.backup
