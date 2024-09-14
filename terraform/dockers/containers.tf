@@ -1,4 +1,3 @@
-
 resource "docker_image" "nginx" {
   name = "nginx:latest"
 }
@@ -6,11 +5,11 @@ resource "docker_image" "nginx" {
 resource "docker_container" "nginx" {
   count = length(var.nginx_host)
   image = docker_image.nginx.image_id
-  name = "nginx {{ var.nginx_host[count.index] }}"
+  name = format("nginx-%s",var.nginx_host[count.index])
   depends_on = [ docker_image.nginx, docker_volume.shared_volume ]
   ports {
     internal = "80"
-    external = "8081"
+    external = "808${count.index}"
   }
   volumes {
     read_only = false
