@@ -4,9 +4,9 @@ resource "docker_image" "nginx" {
 }
 
 resource "docker_container" "nginx" {
-  count = var.nginx_host
+  count = length(var.nginx_host)
   image = docker_image.nginx.image_id
-  name = "nginx {{count.index }}"
+  name = "nginx {{ var.nginx_host[count.index] }}"
   depends_on = [ docker_image.nginx, docker_volume.shared_volume ]
   ports {
     internal = "80"
