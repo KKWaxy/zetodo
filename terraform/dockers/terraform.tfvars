@@ -1,0 +1,1 @@
+nginx_host = ["nginx_1", "nginx_2","nginx_3"]
