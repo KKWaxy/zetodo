@@ -118,7 +118,6 @@ USE_TZ = True
 
 #Does not work in dev mode !!
 STATIC_URL = 'static/'
-print(BASE_DIR)
 STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = [
     BASE_DIR,
