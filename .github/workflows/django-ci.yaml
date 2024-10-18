@@ -49,7 +49,7 @@ jobs:
       run: |
         python zetodo/manage.py test
 
-    - name: Run Tests
+    - name: Ruuning test
       run: |
         python ./zetodo/manage.py runserver &
 

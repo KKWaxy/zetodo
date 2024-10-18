@@ -41,7 +41,7 @@ jobs:
       runs-on: ubuntu-latest
       container: 
         image: cgr.dev/chainguard/grype:latest
-      needs: "docker-build"
+      needs: docker-build
       steps:
         - uses: actions/checkout@v3
         - uses: actions/download-artifact@v4
@@ -49,6 +49,8 @@ jobs:
             name: ${{github.sha}}
         - name: Load docker image
           run: docker load -i ${{github.sha}}.tar
+        - name: Scan image
+          run: docker scan ${{vars.CI_REGISTRY}}:${{github.sha}} #Need to find the scan provider /Sonar
     
     docker-push:
       runs-on: ubuntu-latest
@@ -60,7 +62,7 @@ jobs:
             name: ${{github.sha}}
         - name: Load docker image
           run: docker load -i ${{github.sha}}.tar
-        - name: Update docekr tag
+        - name: Update docker tag
           run: |
             docker tag ${{vars.CI_REGISTRY}}:${{github.sha}} ${{vars.CI_REGISTRY}}:latest
             docker tag ${{vars.CI_REGISTRY}}:${{github.sha}} ${{vars.CI_REGISTRY}}:${{github.ref_name}}
