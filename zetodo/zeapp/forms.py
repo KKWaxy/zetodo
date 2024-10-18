@@ -1,9 +1,10 @@
-from typing import Any, Mapping
-from django.core.files.base import File
-from django.db.models.base import Model
-from django.forms import ModelForm, ChoiceField
-from django.forms.utils import ErrorList
+from django.forms import ModelForm, DateInput
+
 from .models import TaskModel
+
+class TaskDateInput(DateInput):
+    input_type = "date"
+    
 
 class TaskModelForm(ModelForm):
 
@@ -15,3 +16,6 @@ class TaskModelForm(ModelForm):
     class Meta:
         model = TaskModel
         fields = ["title","memo","priority","duedate","status"]
+        widgets = {
+            "duedate": TaskDateInput(format="dd/mm/yyyy"),
+        }
